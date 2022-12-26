@@ -43,6 +43,7 @@ export default function Forecast() {
           href="https://github.com/YokoMentor/weather-app-react"
           className="source-code"
           target="_blank"
+          rel="noreferrer"
         >
           Open source code
         </a>
