@@ -25,6 +25,16 @@ a {
   color: #ffffff;
 }
 
+.source-code {
+  text-decoration: none;
+  color: #000000;
+}
+
+.source-code:hover {
+  text-decoration: none;
+  color: #000000;
+}
+
 a:hover {
   color: #f9b80a;
 }

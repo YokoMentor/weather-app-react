@@ -38,6 +38,15 @@ export default function Forecast() {
           <strong class="forecast-highlight">27°C</strong> 25°C
         </div>
       </div>
+      <div>
+        <a
+          href="https://github.com/YokoMentor/weather-app-react"
+          className="source-code"
+          target="_blank"
+        >
+          Open source code
+        </a>
+      </div>
     </div>
   );
 }
