@@ -7,9 +7,11 @@ import Forecast from "./Forecast";
 export default function App() {
   return (
     <div className="App">
-      <Search />
-      <WeatherToday />
-      <Forecast />
+      <div className="container">
+        <Search />
+        <WeatherToday />
+        <Forecast />
+      </div>
     </div>
   );
 }
