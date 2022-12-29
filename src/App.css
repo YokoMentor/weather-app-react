@@ -26,13 +26,12 @@ a {
 }
 
 .source-code {
-  text-decoration: none;
-  color: #000000;
+  color: #2200ff;
 }
 
 .source-code:hover {
   text-decoration: none;
-  color: #000000;
+  color: #2200ff;
 }
 
 a:hover {

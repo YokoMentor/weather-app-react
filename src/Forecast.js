@@ -39,13 +39,14 @@ export default function Forecast() {
         </div>
       </div>
       <div>
+        <br />
         <a
           href="https://github.com/YokoMentor/weather-app-react"
           className="source-code"
           target="_blank"
           rel="noreferrer"
         >
-          Open source code
+          Github repository
         </a>
       </div>
     </div>
