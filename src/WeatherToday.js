@@ -1,5 +1,6 @@
 import "./App.css";
 import "./WeatherToday.css";
+import Search from "./Search";
 import FormattedDate from "./FormattedDate";
 import React, { useState } from "react";
 import axios from "axios";
@@ -8,6 +9,7 @@ import rainy from "../src/images/rainy.svg";
 
 export default function WeatherToday(props) {
   const [weatherData, setWeatherData] = useState({ ready: false });
+  const [city, setCity] = useState(props.defaultCity);
 
   function handleResponse(response) {
     console.log(response.data);
@@ -23,9 +25,24 @@ export default function WeatherToday(props) {
     });
   }
 
+  function onSearchSubmit(event) {
+    search();
+  }
+
+  function onSearchChange(event) {
+    setCity(event.target.value);
+  }
+
+  function search() {
+    const apiKey = "5f472b7acba333cd8a035ea85a0d4d4c";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(handleResponse);
+  }
+
   if (weatherData.ready) {
     return (
       <div className="WeatherToday">
+        <Search submit={onSearchSubmit} change={onSearchChange} />
         <h1 className="city">{weatherData.city}</h1>
         <p className="date">
           <FormattedDate date={weatherData.date} />
@@ -72,10 +89,7 @@ export default function WeatherToday(props) {
       </div>
     );
   } else {
-    const apiKey = "b40b135798f82a05aed08769f9275f50";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${props.defaultCity}&units=metric&appid=${apiKey}`;
-    axios.get(apiUrl).then(handleResponse);
-
+    search();
     return "Loading";
   }
 }
