@@ -1,0 +1,52 @@
+h1.city {
+    font-size: 60px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #f9b80a;
+}
+
+.date {
+    font-size: 20px;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 30px;
+}
+
+a#celsius-link, 
+a#fahrenheit-link,
+a:focus#celsius-link,
+a:focus#fahrenheit-link {
+    color: #f9b80a;
+    text-decoration: none;
+}
+
+a:hover#celsius-link,
+a:hover#fahrenheit-link {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.temperature-today {
+    font-size: 90px;
+    font-weight: 900;
+    margin: 0px;
+    color: #f9b80a;
+}
+
+.weather-condition {
+    font-size: 30px;
+    font-weight: bold;
+    color: #f9b80a;
+    margin-top: 0px;
+    margin-bottom: 40px;
+    text-transform: capitalize;
+}
+
+.additional-information {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 28px;
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+

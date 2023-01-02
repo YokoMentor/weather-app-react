@@ -1,0 +1,20 @@
+.location {
+    color: #ffffff;
+    font-size: 30px;
+}
+
+.location:hover {
+    color: #f9b80a;
+}
+
+#city-input {
+    font-size: 20px;
+    width: 270px;
+    height: 30px;
+    border: 1px solid #000000;
+    border-radius: 25px;
+    color: #000000;
+    padding-left: 20px;
+    margin-top: 30px;
+    margin-bottom: 40px;
+}

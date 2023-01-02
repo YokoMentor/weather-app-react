@@ -1,4 +1,7 @@
 import "./App.css";
+import "./Search.css";
+import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Search() {
   return (
@@ -10,9 +13,7 @@ export default function Search() {
           id="city-input"
           autocomplete="off"
         />
-        <a href="/" id="locationId">
-          <i class="fa-sharp fa-solid fa-location-dot location"></i>
-        </a>
+        <FontAwesomeIcon className="fa-sharp fa-solid fa-location-dot location" />
       </form>
     </div>
   );
