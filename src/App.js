@@ -12,7 +12,7 @@ export default function App() {
     <div className="App" style={{ backgroundImage: `url(${bg})` }}>
       <div className="container">
         <Search />
-        <WeatherToday defaultCity="BERLIN" />
+        <WeatherToday defaultCity="Berlin" />
         <Forecast />
       </div>
     </div>
