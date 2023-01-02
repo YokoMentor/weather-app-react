@@ -1,49 +1,78 @@
 import "./App.css";
 import "./WeatherToday.css";
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 
 import rainy from "../src/images/rainy.svg";
 
-export default function WeatherToday() {
-  return (
-    <div className="WeatherToday">
-      <h1 className="city">BERLIN</h1>
-      <p className="date">Sunday 1 January</p>
+export default function WeatherToday(props) {
+  const [weatherData, setWeatherData] = useState({ ready: false });
 
-      <img
-        src={rainy}
-        alt="Weather Condition"
-        width="210px"
-        id="weatherConditionId"
-      />
+  function handleResponse(response) {
+    console.log(response.data);
+    setWeatherData({
+      ready: true,
+      date: "Wednesday 07:00",
+      city: response.data.name,
+      temperature: response.data.main.temp,
+      weatherCondition: response.data.weather[0].description,
+      realFeel: response.data.main.feels_like,
+      humidity: response.data.main.humidity,
+      wind: response.data.wind.speed,
+    });
+  }
 
-      <div className="temperature-today">
-        <span className="temperature">28</span>°
-        <span className="temperature-scale">
-          <a href="/" rel="noreferrer" id="celsius-link">
-            C
-          </a>
-          &nbsp;|&nbsp;
-          <a href="/" rel="noreferrer" id="fahrenheit-link">
-            F
-          </a>
-        </span>
-      </div>
-      <div className="weather-condition" id="descriptionId">
-        Rainy
-      </div>
+  if (weatherData.ready) {
+    return (
+      <div className="WeatherToday">
+        <h1 className="city">{weatherData.city}</h1>
+        <p className="date">{weatherData.date}</p>
 
-      <div className="additional-information">
-        <div>
-          Real feel: <span id="realFeelId">29</span>°
+        <img
+          src={rainy}
+          alt="Weather Condition"
+          width="210px"
+          id="weatherConditionId"
+        />
+
+        <div className="temperature-today">
+          <span className="temperature">
+            {Math.round(weatherData.temperature)}
+          </span>
+          °
+          <span className="temperature-scale">
+            <a href="/" rel="noreferrer" id="celsius-link">
+              C
+            </a>
+            &nbsp;|&nbsp;
+            <a href="/" rel="noreferrer" id="fahrenheit-link">
+              F
+            </a>
+          </span>
         </div>
-        <div>
-          Humidity: <span id="humidityId">47</span>%
+        <div className="weather-condition" id="descriptionId">
+          {weatherData.weatherCondition}
         </div>
-        <div>
-          Wind: <span id="windId">4</span> m/s
+
+        <div className="additional-information">
+          <div>
+            Real feel:{" "}
+            <span id="realFeelId">{Math.round(weatherData.realFeel)}</span>C°
+          </div>
+          <div>
+            Humidity: <span id="humidityId">{weatherData.humidity}</span>%
+          </div>
+          <div>
+            Wind: <span id="windId">{Math.round(weatherData.wind)}</span> m/s
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    const apiKey = "b40b135798f82a05aed08769f9275f50";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${props.defaultCity}&units=metric&appid=${apiKey}`;
+    axios.get(apiUrl).then(handleResponse);
+
+    return "Loading";
+  }
 }

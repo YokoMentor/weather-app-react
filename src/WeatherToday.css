@@ -12,6 +12,10 @@ h1.city {
     margin-bottom: 30px;
 }
 
+.city {
+    text-transform: uppercase;
+}
+
 a#celsius-link, 
 a#fahrenheit-link,
 a:focus#celsius-link,
