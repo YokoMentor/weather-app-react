@@ -2,7 +2,7 @@ import "./App.css";
 import "./WeatherToday.css";
 import Search from "./Search";
 import FormattedDate from "./FormattedDate";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 import rainy from "../src/images/rainy.svg";
@@ -10,6 +10,11 @@ import rainy from "../src/images/rainy.svg";
 export default function WeatherToday(props) {
   const [weatherData, setWeatherData] = useState({ ready: false });
   const [city, setCity] = useState(props.defaultCity);
+  const [units, setUnits] = useState("metric");
+
+  useEffect(() => {
+    search();
+  }, [units]);
 
   function handleResponse(response) {
     console.log(response.data);
@@ -18,11 +23,29 @@ export default function WeatherToday(props) {
       date: new Date(response.data.dt * 1000),
       city: response.data.name,
       temperature: response.data.main.temp,
+      units: response.data.main.temp,
       weatherCondition: response.data.weather[0].description,
       realFeel: response.data.main.feels_like,
+      realFeelIcon: setRealFeelIcon(),
       humidity: response.data.main.humidity,
-      wind: response.data.wind.speed,
+      wind: setWindIcon(response),
     });
+  }
+
+  function setRealFeelIcon() {
+    if (units === "metric") {
+      return "C";
+    } else {
+      return "F";
+    }
+  }
+
+  function setWindIcon(response) {
+    if (units === "metric") {
+      return Math.round(response.data.wind.speed) + "m/s";
+    } else {
+      return Math.round(response.data.wind.speed) + "ft/s";
+    }
   }
 
   function onSearchSubmit(event) {
@@ -34,9 +57,20 @@ export default function WeatherToday(props) {
   }
 
   function search() {
+    console.log("searching");
     const apiKey = "5f472b7acba333cd8a035ea85a0d4d4c";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
     axios.get(apiUrl).then(handleResponse);
+  }
+
+  function convertToCelsius(event) {
+    event.preventDefault();
+    setUnits("metric");
+  }
+
+  function convertToFahrenheit(event) {
+    event.preventDefault();
+    setUnits("imperial");
   }
 
   if (weatherData.ready) {
@@ -59,13 +93,13 @@ export default function WeatherToday(props) {
           <span className="temperature">
             {Math.round(weatherData.temperature)}
           </span>
-          °
+
           <span className="temperature-scale">
-            <a href="/" rel="noreferrer" id="celsius-link">
-              C
+            <a href="/" id="celsius-link" onClick={convertToCelsius}>
+              C°
             </a>
             &nbsp;|&nbsp;
-            <a href="/" rel="noreferrer" id="fahrenheit-link">
+            <a href="/" id="fahrenheit-link" onClick={convertToFahrenheit}>
               F
             </a>
           </span>
@@ -77,13 +111,14 @@ export default function WeatherToday(props) {
         <div className="additional-information">
           <div>
             Real feel:{" "}
-            <span id="realFeelId">{Math.round(weatherData.realFeel)}</span>C°
+            <span id="realFeelId">{Math.round(weatherData.realFeel)}</span>
+            {weatherData.realFeelIcon}°
           </div>
           <div>
             Humidity: <span id="humidityId">{weatherData.humidity}</span>%
           </div>
           <div>
-            Wind: <span id="windId">{Math.round(weatherData.wind)}</span> m/s
+            Wind: <span id="windId">{weatherData.wind}</span>
           </div>
         </div>
       </div>
