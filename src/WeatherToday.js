@@ -6,9 +6,16 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 import rainy from "../src/images/rainy.svg";
+import stormy from "../src/images/stormy.svg";
+import sunny from "../src/images/sunny.svg";
+import cloudy from "../src/images/cloudy.svg";
+import partly_cloudy from "../src/images/partly_cloudy.svg";
+import snowy from "../src/images/snowy.svg";
+import foggy from "../src/images/foggy.svg";
 
 export default function WeatherToday(props) {
   const [weatherData, setWeatherData] = useState({ ready: false });
+  const [iconUrl, setIconUrl] = useState("");
   const [city, setCity] = useState(props.defaultCity);
   const [units, setUnits] = useState("metric");
 
@@ -24,6 +31,7 @@ export default function WeatherToday(props) {
       city: response.data.name,
       temperature: response.data.main.temp,
       units: response.data.main.temp,
+      weatherIcon: displayForecastIcon(response.data.weather[0].icon),
       weatherCondition: response.data.weather[0].description,
       realFeel: response.data.main.feels_like,
       realFeelIcon: setRealFeelIcon(),
@@ -56,6 +64,51 @@ export default function WeatherToday(props) {
     setCity(event.target.value);
   }
 
+  function displayWeather(response) {
+    displayForecastIcon(response.data.weather[0].icon, "weatherConditionId");
+  }
+
+  function displayForecastIcon(response) {
+    switch (response) {
+      case "01n":
+        return sunny;
+      case "01d":
+        return sunny;
+      case "02d":
+        return partly_cloudy;
+      case "02n":
+        return partly_cloudy;
+      case "03d":
+        return cloudy;
+      case "03n":
+        return cloudy;
+      case "04d":
+        return cloudy;
+      case "09d":
+        return rainy;
+      case "09n":
+        return rainy;
+      case "10d":
+        return rainy;
+      case "10n":
+        return rainy;
+      case "11d":
+        return stormy;
+      case "11n":
+        return stormy;
+      case "13d":
+        return snowy;
+      case "13n":
+        return snowy;
+      case "50d":
+        return foggy;
+      case "50n":
+        return foggy;
+      default:
+        return rainy;
+    }
+  }
+
   function search() {
     console.log("searching");
     const apiKey = "5f472b7acba333cd8a035ea85a0d4d4c";
@@ -82,12 +135,7 @@ export default function WeatherToday(props) {
           <FormattedDate date={weatherData.date} />
         </p>
 
-        <img
-          src={rainy}
-          alt="Weather Condition"
-          width="210px"
-          id="weatherConditionId"
-        />
+        <img src={weatherData.weatherIcon} alt="Weather Icon" width="210px" />
 
         <div className="temperature-today">
           <span className="temperature">
