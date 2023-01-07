@@ -15,7 +15,6 @@ import foggy from "../src/images/foggy.svg";
 
 export default function WeatherToday(props) {
   const [weatherData, setWeatherData] = useState({ ready: false });
-  const [iconUrl, setIconUrl] = useState("");
   const [city, setCity] = useState(props.defaultCity);
   const [units, setUnits] = useState("metric");
 
@@ -62,10 +61,6 @@ export default function WeatherToday(props) {
 
   function onSearchChange(event) {
     setCity(event.target.value);
-  }
-
-  function displayWeather(response) {
-    displayForecastIcon(response.data.weather[0].icon, "weatherConditionId");
   }
 
   function displayForecastIcon(response) {
