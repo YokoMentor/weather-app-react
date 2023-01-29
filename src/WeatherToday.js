@@ -1,9 +1,7 @@
 import "./App.css";
 import "./WeatherToday.css";
-import Search from "./Search";
 import FormattedDate from "./FormattedDate";
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 
 import rainy from "../src/images/rainy.svg";
 import stormy from "../src/images/stormy.svg";
@@ -14,7 +12,6 @@ import snowy from "../src/images/snowy.svg";
 import foggy from "../src/images/foggy.svg";
 
 export default function WeatherToday(props) {
-  const [weatherData, setWeatherData] = useState({ ready: false });
   const [units, setUnits] = useState("metric");
 
   useEffect(() => {

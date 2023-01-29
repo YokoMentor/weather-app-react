@@ -15,7 +15,7 @@ export default function App() {
 
   useEffect(() => {
     search(units);
-  }, [units]);
+  }, [units]); // eslint-disable-line react-hooks/exhaustive-deps
 
   function onSearchSubmit(event) {
     search(units);
