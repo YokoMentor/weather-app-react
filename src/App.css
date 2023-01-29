@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  height: 110vh;
+  min-height: 100vh;
 }
 
 .container {
@@ -8,4 +8,23 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.source-code {
+  font-weight: bold;
+  text-decoration: none;
+  color: #ffffff;
+  line-height: 5rem;
+}
+
+a.source-code {
+  font-weight: bold;
+  text-decoration: none;
+  color: #ffffff;
+}
+
+a:hover.source-code {
+  font-weight: bold;
+  text-decoration: none;
+  color: #f9b80a;
 }

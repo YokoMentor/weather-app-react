@@ -12,21 +12,3 @@
 .forecast-highlight {
  color: #f9b80a;
 }
-
-.source-code {
-    font-weight: bold;
-    text-decoration: none;
-    color: #ffffff;
-}
-
-a.source-code {
-    font-weight: bold;
-    text-decoration: none;
-    color: #ffffff;
-}
-
-a:hover.source-code {
-    font-weight: bold;
-    text-decoration: none;
-    color: #f9b80a;
-}
