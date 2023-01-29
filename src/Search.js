@@ -1,6 +1,6 @@
+import React from "react";
 import "./App.css";
 import "./Search.css";
-import React from "react";
 
 export default function Search(props) {
   function handleSubmit(event) {

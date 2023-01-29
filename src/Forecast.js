@@ -1,6 +1,6 @@
+import React from "react";
 import "./App.css";
 import "./Forecast.css";
-import React from "react";
 
 import rainy from "../src/images/rainy.svg";
 import stormy from "../src/images/stormy.svg";
@@ -90,18 +90,6 @@ export default function Forecast(props) {
             </div>
           </div>
         ))}
-      </div>
-
-      <div>
-        <a
-          href="https://github.com/YokoMentor/weather-app-react"
-          className="source-code"
-          target="_blank"
-          rel="noreferrer"
-        >
-          Open-source code
-        </a>
-        &nbsp;<span className="source-code">by Maarja</span>
       </div>
     </div>
   );

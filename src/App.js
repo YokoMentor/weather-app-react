@@ -1,11 +1,10 @@
-import "./App.css";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
+import "./App.css";
+import Search from "./Search";
 import WeatherToday from "./WeatherToday";
 import Forecast from "./Forecast";
-import React, { useEffect, useState } from "react";
-
 import bg from "./images/bg.jpg";
-import Search from "./Search";
 
 export default function App() {
   const [city, setCity] = useState("Berlin");
@@ -32,10 +31,10 @@ export default function App() {
   async function search(customUnits) {
     const apiKey = "5f472b7acba333cd8a035ea85a0d4d4c";
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${customUnits}`;
-    axios.get(apiUrl).then(handleResponse);
+    axios.get(apiUrl).then(handleTodayResponse);
   }
 
-  function handleResponse(response) {
+  function handleTodayResponse(response) {
     setWeatherData({
       ready: true,
       date: new Date(response.data.dt * 1000),
@@ -87,6 +86,18 @@ export default function App() {
           defaultCity="Berlin"
         />
         <Forecast forecastData={forecast} />
+
+        <div>
+          <a
+            href="https://github.com/YokoMentor/weather-app-react"
+            className="source-code"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Open-source code
+          </a>
+          &nbsp;<span className="source-code">by Maarja</span>
+        </div>
       </div>
     </div>
   );

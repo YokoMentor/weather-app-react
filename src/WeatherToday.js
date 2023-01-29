@@ -1,7 +1,7 @@
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import "./WeatherToday.css";
 import FormattedDate from "./FormattedDate";
-import React, { useEffect, useState } from "react";
 
 import rainy from "../src/images/rainy.svg";
 import stormy from "../src/images/stormy.svg";
